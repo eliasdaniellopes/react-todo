@@ -13,7 +13,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    Axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10')
+    Axios.get('http://127.0.0.1:5000/todo')
       .then(res => this.setState({todos: res.data}));
   }
   //Alterna o completed
@@ -27,13 +27,13 @@ class App extends Component {
   }
   //Deletar tarefa
   delTodo = (id) => {
-    Axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+    Axios.delete(`http://127.0.0.1:5000/todo${id}`)
     .then(res => this.setState({todos: [...this.state.todos.filter(todo => todo.id !== id)]})
     )
 
   }
   addTodo = (title) => {
-    Axios.post('https://jsonplaceholder.typicode.com/todos', {
+    Axios.post('http://127.0.0.1:5000/add', {
       title,
       completed:false
     }).then(res => this.setState({
